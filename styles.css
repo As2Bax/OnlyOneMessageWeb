@@ -143,8 +143,28 @@ a {
   }
 }
 
+.landing-text h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.landing-text p {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+
 
 /* carousel (landing) */
+@media (max-width: 768px) {
+  .landing-carousel {
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+  }
+}
+
 .landing-carousel {
   flex: 1;
   height: 1000px;
