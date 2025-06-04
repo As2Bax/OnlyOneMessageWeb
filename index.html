@@ -13,6 +13,11 @@
   <header class="navbar">
     <div class="nav-container">
       <img src="assets/icons/oomlogo.png" alt="OnlyOneMessage Logo" class="logo-img" />
+
+      <!-- Mobile menu icon-->
+      <div class="mobile-menu-icon" onclick="toggleMenu()">☰</div>
+
+      <!-- Desktop -->
       <nav class="nav-links">
         <a href="https://discord.com/oauth2/authorize?client_id=1258462729602203768">Invite</a>
         <a href="#features">Features</a>
@@ -20,7 +25,16 @@
         <a href="#try">Try It Out</a>
       </nav>
     </div>
+
+    <!-- Mobile navigation menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="https://discord.com/oauth2/authorize?client_id=1258462729602203768">Invite</a>
+      <a href="#features">Features</a>
+      <a href="#how">Setup & How It Works</a>
+      <a href="#try">Try It Out</a>
+    </div>
   </header>
+
 
     <section class="landing">
     <div class="landing-content">
@@ -43,7 +57,7 @@
             <img src="assets/images/oomimg4.png" alt="Image">
             <img src="assets/images/oomimg5.png" alt="Image">
             <img src="assets/images/oomimg6.png" alt="Image">
-
+            <!-- Duplication for seamless loop-->
             <img src="assets/images/oomimg.png" alt="Image">
             <img src="assets/images/oomimg2.png" alt="Image">
             <img src="assets/images/oomimg3.png" alt="Image">
@@ -127,5 +141,10 @@
     });
   });
 </script>
-
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+  }
+</script>
 </html>
