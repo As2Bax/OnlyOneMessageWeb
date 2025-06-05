@@ -186,15 +186,17 @@ a {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
-/*  features carousel  */
+/* features section  */
 .features-section {
   overflow: hidden;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
 }
 
 .features-scroll-wrapper {
   overflow: hidden;
   position: relative;
-  width: 100%;
+  width: 100vw;
 }
 
 .features-scroll-strip {
@@ -202,6 +204,7 @@ a {
   gap: 1rem;
   animation: scrollFeaturesX 30s linear infinite;
   width: max-content;
+  padding: 1rem;
 }
 
 .feature {
@@ -227,6 +230,7 @@ a {
   color: #ccc;
   font-size: 1rem;
 }
+
 
 /*  section  */
 .section {
@@ -432,4 +436,15 @@ a {
     width: 100%;
     max-width: 300px;
   }
+}
+
+
+/* fixes */
+.features-section {
+  overflow: hidden;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%); 
+  max-width: none;
+  padding: 2rem 0;
+  background: #0e0e0e;
 }
