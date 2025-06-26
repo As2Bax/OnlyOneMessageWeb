@@ -31,6 +31,10 @@ a {
   color: #8d28ec;
 }
 
+.highlight-purple {
+  color: #8d28ec;
+}
+
 /*  navbar / topbar  */
 .navbar {
   position: fixed;
