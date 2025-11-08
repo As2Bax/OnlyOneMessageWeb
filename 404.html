@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<title>404 | Page Not Found</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #0e0e0e;
+        color: #e0e0e0;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .error-container {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .error-code {
+        font-size: 3rem;
+        font-weight: 700;
+    }
+
+    .divider {
+        width: 2px;
+        height: 60px;
+        background: #5808fb;
+        border-radius: 1px;
+    }
+
+    .error-message {
+        font-size: 1.5rem;
+        color: #ccc;
+        text-align: left;
+    }
+</style>
+</head>
+<body>
+    <div class="error-container">
+        <h2 class="error-code">404</h2>
+        <div class="divider"></div>
+        <p class="error-message">We couldn't fetch that for you.</p>
+    </div>
+</body>
+</html>
