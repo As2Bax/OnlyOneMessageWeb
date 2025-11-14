@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="../assets/icons/logowhite.png" type="image/png">
+    <title>OnlyOneMessage Docs</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-json.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/docs.css">
+
+    <!-- Google tag (gtag.js, Monobyte Studios) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GE0XGGGR8E"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GE0XGGGR8E');
+    </script>
+</head>
+
+<body>
+    <div id="sidebar-container"></div>
+        <script>
+            fetch('/assets/html/docsidebar.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('sidebar-container').innerHTML = html;
+
+                const links = document.querySelectorAll('#sidebar-container a');
+                let currentPath = window.location.pathname;
+
+                // normalize paths
+                if (currentPath.endsWith('/')) currentPath = currentPath.slice(0, -1);
+
+                links.forEach(link => {
+                let linkPath = new URL(link.href).pathname;
+                if (linkPath.endsWith('/')) linkPath = linkPath.slice(0, -1);
+
+                if (linkPath.endsWith('/index.html')) linkPath = linkPath.replace('/index.html', '');
+
+                if (currentPath === linkPath) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+                });
+            });
+        </script>
+    </div>
+
+    <div class="main-content">
+        <h1>Introduction</h1>
+        <p>Welcome to the <strong>OnlyOneMessage documentation</strong>! 
+            Here you'll be able to find all of the resources, guides, and references used to help you use OnlyOneMessage.</p>
+
+        <p>We've organized this documentation into different sections to make it easier to navigate. 
+            Are you a developer? Check our our references. Dont know what to do? Check out our guides.</p>
+
+        <div class="hint-card hint">
+            <div class="icon">💡</div>
+            <p>This documentation is a <strong>work in progress</strong> and not all topics will be covered. 
+                We're constantly updating this to cover new features and improvements.</p>
+        </div>
+        
+        <h2>Sections</h2>
+        <li><strong>Getting Started</strong> - Step-by-step instructions to set up OnlyOneMessage on your server.</li>
+        <li><strong>Commands</strong> - A detailed list of commands, its parameters, and what it does.</li>
+        <li><strong>API Reference</strong> - A guide on interacting with OnlyOneMessage through it's REST API.</li>
+ 
+    </div>
+
+</body>
+</html>

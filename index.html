@@ -5,10 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets/icons/logowhite.png" type="image/png">
     <title>OnlyOneMessage</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+    <!-- Google tag (gtag.js, Monobyte Studios) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GE0XGGGR8E"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GE0XGGGR8E');
+    </script>
 </head>
+
 <body>
 
     <header>
@@ -16,8 +28,8 @@
             <img src="assets/icons/logowhite.png" alt="OnlyOneMessage Logo" class="logo">
 
             <div class="buttons">
-                <a href="https://onlyonemessage.monobyte.studio/invite" class="btn primary">Invite</a>
-                <a href="https://onlyonemessage.monobyte.studio/support" class="btn secondary">Support</a>
+                <a href="/invite" class="btn primary">Invite</a>
+                <a href="/support" class="btn secondary">Support</a>
             </div>
         </nav>
     </header>
@@ -31,8 +43,8 @@
             <p>One message. One chance.</p>
             
             <div class="buttons">
-                <a href="https://onlyonemessage.monobyte.studio/invite" class="btn primary">Invite Discord Bot</a>
-                <a href="https://onlyonemessage.monobyte.studio/support" class="btn secondary">Support Discord</a>
+                <a href="/invite" class="btn primary">Invite Discord Bot</a>
+                <a href="/support" class="btn secondary">Support Discord</a>
             </div>
         </div>
 
@@ -49,21 +61,53 @@
                 <img src="assets/gallery/img2.png" alt="">
                 <img src="assets/gallery/img3.png" alt="">
                 <img src="assets/gallery/img4.png" alt="">
-
-                <img src="assets/gallery/img1.png" alt="">
-                <img src="assets/gallery/img2.png" alt="">
-                <img src="assets/gallery/img3.png" alt="">
-                <img src="assets/gallery/img4.png" alt="">
             </div>
         </section>
 
-            <p>OnlyOneMessage allows you to create a special one-message channel where members can share a single message, and that's it. 
-                After they post, OnlyOneMessage automatically restricts permissions to the member within that channel.</p>
+        <p>OnlyOneMessage allows you to create a special one-message channel where members can share a single message, and that's it. 
+            After they post, OnlyOneMessage automatically restricts permissions to the member within that channel.</p>
+
+        <script> // image gallery
+            document.addEventListener("DOMContentLoaded", () => {
+                const track = document.querySelector(".gallery-track");
+
+                // duplicate images
+                const images = Array.from(track.children);
+                images.forEach(img => {
+                    const clone = img.cloneNode(true);
+                    track.appendChild(clone);
+                });
+
+                let NormalSpeed = 0.7;
+                let SlowSpeed = 0.5;
+
+                let speed = NormalSpeed;
+                let position = 0;
+
+                function scrollGallery() {
+                    position -= speed;
+
+                    // reset when first half has rotated
+                    if (Math.abs(position) >= track.scrollWidth / 2) {
+                        position = 0;
+                    }
+
+                    track.style.transform = `translateX(${position}px)`;
+                    requestAnimationFrame(scrollGallery);
+                }
+
+                scrollGallery();
+
+                // slow down on hover
+                track.parentElement.addEventListener("mouseenter", () => speed = SlowSpeed);
+                track.parentElement.addEventListener("mouseleave", () => speed = NormalSpeed);
+            });
+        </script>
     </section>
 
 
     <section class="features">
-        <h2>✨ Features</h2>
+        <h2>✨ <span class="highlight">Powerful</span> Features</h2>
         <p>
             OnlyOneMessage offers a collection of features designed to enhance your Discord server's experience,
             whether you're controlling message flow or having fun.
@@ -100,99 +144,175 @@
     <div class="divider"></div>
 
 
-    <section class="guide">
-        <div class="steps-cards">
-            <div class="step-card">
-                <h2>⚡ Get Started</h2>
-                <p>Getting started with OnlyOneMessage is easy. Follow these 3 steps and you'll be ready in no time!</p>
+    <section class="statistics">
+        <h2>📈 See the <span class="highlight">Stats</span></h2>
+        <p>
+            OnlyOneMessage is trusted by many communities to help manage their own one-message system:
+        </p>
 
-                <h3><i>1.</i> Invite OnlyOneMessage</h3>
-                <p>How can you use OnlyOneMessage when you haven't invited it? Click the <code>Invite</code> button to add it to your own server.</p>
-
-                <h3><i>2.</i> Use the <i>/setup</i> Command</h3>
-                <p>In your server, run the <code>/setup</code> command; OnlyOneMessage will do everything for you.</p>
-
-                <h3><i>3.</i> Customization</h3>
-                <p>Everything else is now on your hands; Customize the OnlyOneMessage channel, whitelist your admins, you name it! And the final step; have fun!</p>
+        <div class="stat-cards">
+            <div class="stat-card">
+                <h2>💻</h2>
+                <h4 class="servers">N/A+</h4>
+                <p>Servers currently monitored</p>
             </div>
 
-
-            <div class="step-card">
-                <h2>⚙️ How It Works</h2>
-                <p>OnlyOneMessage's work style is very simple, really!</p>
-
-                <h3><i>1.</i> Blacklisting</h3>
-                <p>When a non-whitelisted member sends a message in the OnlyOneMessage channel, they're <b>instantly</b> assigned the <code>@OnlyOneMessageBlacklist</code> role.</p>
-
-                <h3><i>2.</i> Restriction</h3>
-                <p>Once blacklisted, the member is restricted from <b>sending messages, creating threads, or adding reactions in that channel</b>, and a ⛈️ reaction is added to mark their message.</p>
-
-                <h3><i>3.</i> Restoration</h3>
-                <p>A member's restrictions are lifted once their <b>blacklist role is removed</b>, whether by an admin, through message recovery or automatic unblacklist.</p>
+            <div class="stat-card">
+                <h2>💬</h2>
+                <h4 class="channels">N/A+</h4>
+                <p>Channels currently monitored</p>
             </div>
+
+            <div class="stat-card">
+                <h2>👥</h2>
+                <h4 class="members">N/A+</h4>
+                <p>Members monitored</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>😇</h2>
+                <h4 class="whitelists">N/A+</h4>
+                <p>Messages whitelisted</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>⛈️</h2>
+                <h4 class="blacklists">N/A+</h4>
+                <p>Messages successfully blacklisted</p>
+            </div>
+
         </div>
     </section>
+
 
 
     <div class="divider"></div>
 
 
     <section class="feedback">
-        <h2>💬 Help Shape OnlyOneMessage</h2>
+        <h2>💬 Help <span class="highlight">Shape</span> OnlyOneMessage</h2>
         <p>OnlyOneMessage is constantly improving, and your feedback helps guide its future. 
         Found a bug, or have a feature idea? We'd love to hear from you.</p>
 
         <div class="buttons">
-            <a href="https://onlyonemessage.monobyte.studio/support" class="btn primary">Join the Support Server</a>
+            <a href="/support" class="btn primary">Join the Support Server</a>
         </div>
     </section>
 
 
     <section class="cta">
         <div class="cta-content">
-            <h2>Ready to simplify your server?</h2>
+            <h2>Ready to <i>simplify</i> your server?</h2>
             <p>Invite OnlyOneMessage today and take control of your channels; one message at a time.</p>
 
             <div class="buttons">
-                <a href="https://onlyonemessage.monobyte.studio/invite" class="btn primary">Invite OnlyOneMessage</a>
+                <a href="/invite" class="btn primary">Invite OnlyOneMessage</a>
             </div>
         </div>
     </section>
 
-    
-    <footer class="footer">
-        <h3>One message. One chance.</h3>
-        <div class="buttons">
-            <a href="https://onlyonemessage.monobyte.studio/invite" class="btn secondary">Invite</a>
-        </div>
 
-        <div class="footer-groups">
-            <div class="footer-group">
-                <h3>Resources</h3>
-                <a href="https://onlyonemessage.monobyte.studio/invite">Invite Bot</a>
-                <a href="https://top.gg/bot/1258462729602203768/vote">Vote on Top.gg</a>
-                <a href="https://top.gg/bot/1258462729602203768#reviews">Leave a Review</a>
-            </div>
 
-            <div class="footer-group">
-                <h3>Support</h3>
-                <a href="https://onlyonemessage.monobyte.studio/support">Support Discord</a>
-                <a href="mailto:support@monobyte.studio">Email Us</a>
-            </div>
+    <div id="footer">
+        <script>
+            document.addEventListener("DOMContentLoaded", async () => {
+                try {
+                    const response = await fetch("/assets/html/footer.html");
+                    if (!response.ok) throw new Error("Failed to load footer");
 
-            <div class="footer-group">
-                <h3>Legal</h3>
-                <a href="https://onlyonemessage.monobyte.studio/terms">Terms of Service</a>
-                <a href="https://onlyonemessage.monobyte.studio/privacy">Privacy Policy</a>
-            </div>
-        </div>
+                    const html = await response.text();
+                    const Footer = document.getElementById("footer");
+                    Footer.innerHTML = html;
 
-        <div class="footer-logo">
-            <a href="https://monobyte.studio"><img src="assets/icons/monobyte_full.png" alt="Monobyte Studios Logo"></a>
-        </div>
-        <p>© 2025 Monobyte Studios - All rights reserved.</p>
-    </footer>
+
+                } catch (error) {
+                    console.error("Error loading footer:", error);
+                }
+            });
+        </script>
+    </div>
+
+
 
 </body>
-</html>
 
+<script> // for the stats section
+    async function updateStats() {
+        try {
+            const response = await fetch("http://127.0.0.1:9300/v1/stats");
+            if (!response.ok) throw new Error("Failed to fetch stats from the OnlyOneMessage API.");
+
+            const data = await response.json();
+
+            const FormatNumber = (num) => {
+                if (num >= 1_000_000) return (num / 1_000_000).toFixed(1).replace(/\.0$/, "") + "M";
+                if (num >= 1_000) return (num / 1_000).toFixed(1).replace(/\.0$/, "") + "k";
+                return num;
+            };
+
+            const AnimateNumber = (element, endValue, duration = 1200) => {
+                let startValue = 0;
+                const startTime = performance.now();
+
+                function update(currentTime) {
+                    const progress = Math.min((currentTime - startTime) / duration, 1);
+                    const value = Math.floor(progress * endValue);
+                    element.textContent = FormatNumber(value) + "+";
+                    if (progress < 1) requestAnimationFrame(update);
+                }
+
+                requestAnimationFrame(update);
+            };
+
+
+            const Stats = {
+                servers: document.querySelector(".stat-card .servers"),
+                members: document.querySelector(".stat-card .members"),
+                whitelists: document.querySelector(".stat-card .whitelists"),
+                blacklists: document.querySelector(".stat-card .blacklists"),
+                channels: document.querySelector(".stat-card .channels")
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        AnimateNumber(Stats.servers, data.guilds);
+                        AnimateNumber(Stats.members, data.members);
+                        AnimateNumber(Stats.whitelists, data.whitelists);
+                        AnimateNumber(Stats.blacklists, data.blacklists);
+                        AnimateNumber(Stats.channels, data.channels);
+                        observer.disconnect(); // runs only once
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            observer.observe(document.querySelector(".stat-cards"));
+        } catch (err) {
+            console.error("Error updating stats:", err);
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", updateStats);
+</script>
+
+
+
+<script> // on-view animation
+    document.addEventListener("DOMContentLoaded", () => {
+        const elements = document.querySelectorAll("h1, h2, h3, h4, p, a, li, code, .btn, .feature-card, .stat-card");
+        elements.forEach(el => el.classList.add("animate-on-scroll"));
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("in-view");
+                    obs.unobserve(entry.target); // only once
+                }
+            });
+        }, { threshold: 0.1 });
+
+        elements.forEach(el => observer.observe(el));
+    });
+</script>
+
+</html>

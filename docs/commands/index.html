@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../assets/icons/logowhite.png" type="image/png">
+    <title>OnlyOneMessage Docs</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-json.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/docs.css">
+
+    <!-- Google tag (gtag.js, Monobyte Studios) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GE0XGGGR8E"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GE0XGGGR8E');
+    </script>
+</head>
+
+<body>
+    <div id="sidebar-container"></div>
+        <script>
+            fetch('/assets/html/docsidebar.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('sidebar-container').innerHTML = html;
+
+                const links = document.querySelectorAll('#sidebar-container a');
+                let currentPath = window.location.pathname;
+
+                // normalize paths
+                if (currentPath.endsWith('/')) currentPath = currentPath.slice(0, -1);
+
+                links.forEach(link => {
+                let linkPath = new URL(link.href).pathname;
+                if (linkPath.endsWith('/')) linkPath = linkPath.slice(0, -1);
+
+                if (linkPath.endsWith('/index.html')) linkPath = linkPath.replace('/index.html', '');
+
+                if (currentPath === linkPath) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+                });
+            });
+        </script>
+    </div>
+
+
+    <div class="main-content">
+        <h1>Commands</h1>
+        <p>A detailed list of OnlyOneMessage's commands, what it does, its restrictions, and its parameters.</p>
+
+
+
+        <h2>/setup</h2>
+        <p>Automatically configure OnlyOneMessage for a server. This command will first prompt confirmation before proceeding.</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>channel</code></td>
+                    <td>Text Channel</td>
+                    <td>The channel where OnlyOneMessage will setup in. If not specified, the bot will create one.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="hint-card hint">
+            <div class="icon">📰</div>
+            <p><strong>Manage Roles, Manage Channels & Manage Threads</strong> is required from <strong>both</strong> OnlyOneMessage and the executor to run this command.</p>
+        </div>
+
+
+
+        <h2>/revert</h2>
+        <p>Automatically reverts all configurations made by OnlyOneMessage. A confirmation message will be shown before proceeding. The set channel will also be deleted.</p>
+        <p><i>You can alternatively remove data by kicking OnlyOneMessage out of a server.</i></p>
+
+        <div class="hint-card hint">
+            <div class="icon">📰</div>
+            <p><strong>Manage Roles & Manage Channels</strong> is required from <strong>both</strong> OnlyOneMessage and the executor to run this command.</p>
+        </div>
+
+        <h2>/config</h2>
+        <p>Customize OnlyOneMessage's behavior for a server, using Discord's <code>Components V2</code>.</p>
+
+        <p>Configurations include:</p>
+        <ul>
+            <li><strong>Message Recovery</strong> - Automatically removes the blacklist role from members, if they delete their message.</li>
+            <li><strong>Blacklist Duration</strong> - Automatically removes the blacklist role from a member after a certain time. This is a long-term solution to cooldowns.</li>
+            <li><strong>Logging</strong> - Setup a dedicated logging channel where all actions related to OnlyOneMessage will go to. You can also configure what type of logs get sent.</li>
+            <li><strong>Disable Functions</strong> - Temporaily disable OnlyOneMessage, a solution to <code>/revert</code>.</li>
+            <li><strong>Revert Settings</strong> - Restores all configurations to it's default</li>
+        </ul>
+
+        <div class="hint-card hint">
+            <div class="icon">📰</div>
+            <p><strong>Manage Roles & Manage Channels</strong> is required to run this command.</p>
+        </div>
+
+
+        <h2>/modify</h2>
+        <p>Manage a members blacklist & whitelist roles.</p>
+
+        <p>To successfully execute this command, the following conditions must be met:</p>
+        <ul>
+            <li>The executor's highest role is higher than the member being modified.</li>
+            <li>The member being modified is neither an administrator nor the server owner.</li>
+            <li>The whitelist or blacklist role is positioned below the executor's highest role.</li>
+        </ul>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>member</code></td>
+                    <td>Members</td>
+                    <td>The member to modify</td>
+                </tr>
+
+                <tr>
+                    <td><code>modify</code></td>
+                    <td>Choice</td>
+                    <td>What role to modify</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="hint-card hint">
+            <div class="icon">📰</div>
+            <p><strong>Manage Roles</strong> is required to run this command.</p>
+        </div>
+
+        
+        <h2>/invite</h2>
+        <p>Sends an invite link to add OnlyOneMessage to your own server.</p>
+
+        <h2>/feedback</h2>
+        <p>Opens a Discord <code>Modal</code> to submit feedback to the OnlyOneMessage developers.</p>
+        <p><i>We cannot respond to you via this method, please create a support ticket or email us at support@monobyte.studio to do so.</i></p>
+
+        <h2>/stats</h2>
+        <p>View basic statistics about OnlyOneMessage. This also includes individual server stats for blacklists and whitelists.</p>
+
+        <div class="hint-card hint">
+            <div class="icon">📰</div>
+            <p>These statistics are also available under our API Reference.</p>
+        </div>
+
+        <div class="image">
+            <img src="../../assets/docs/stats.png" alt="Invite">
+            <p class="caption">The /stats command, as of 1.6.2.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

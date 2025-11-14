@@ -5,10 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../assets/icons/logowhite.png" type="image/png">
     <title>Privacy Policy | OnlyOneMessage</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Google tag (gtag.js, Monobyte Studios) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GE0XGGGR8E"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GE0XGGGR8E');
+    </script>
 </head>
+
 <body>
 
     <header>
@@ -16,7 +27,7 @@
             <img src="../assets/icons/logowhite.png" alt="OnlyOneMessage Logo" class="logo">
 
             <div class="buttons">
-                <a href="https://onlyonemessage.monobyte.studio" class="btn secondary">Home</a>
+                <a href="/" class="btn secondary">Home</a>
             </div>
         </nav>
     </header>
@@ -61,7 +72,7 @@
             <h3>5. Your Rights & Data Removal</h3>
             <p>You may request access to, correction of, or deletion of your data at any time. 
             To request deletion, you may either remove OnlyOneMessage from your server or use the <code>/revert</code> command to remove all stored data. 
-            You can also reach out via our <a href="https://onlyonemessage.monobyte.studio/support">Support Server</a> or email us at <a href="mailto:support@monobyte.studio">support@monobyte.studio</a> for assistance.</p>
+            You can also reach out via our <a href="/support">Support Server</a> or email us at <a href="mailto:support@monobyte.studio">support@monobyte.studio</a> for assistance.</p>
 
             <h3>6. Changes to This Privacy Policy</h3>
             <p>This Privacy Policy may be updated occasionally to reflect new features or legal requirements. 
@@ -72,39 +83,24 @@
 
 
 
-    <footer class="footer">
-        <h3>One message. One chance.</h3>
-        <div class="buttons">
-            <a href="https://onlyonemessage.monobyte.studio/invite" class="btn secondary">Invite</a>
-        </div>
+    <div id="footer">
+        <script>
+            document.addEventListener("DOMContentLoaded", async () => {
+                try {
+                    const response = await fetch("/assets/html/footer.html");
+                    if (!response.ok) throw new Error("Failed to load footer");
 
-        <div class="footer-groups">
-            <div class="footer-group">
-                <h3>Resources</h3>
-                <a href="https://onlyonemessage.monobyte.studio/invite">Invite Bot</a>
-                <a href="https://top.gg/bot/1258462729602203768/vote">Vote on Top.gg</a>
-                <a href="https://top.gg/bot/1258462729602203768#reviews">Leave a Review</a>
-            </div>
+                    const html = await response.text();
+                    const Footer = document.getElementById("footer");
+                    Footer.innerHTML = html;
 
-            <div class="footer-group">
-                <h3>Support</h3>
-                <a href="https://onlyonemessage.monobyte.studio/support">Support Discord</a>
-                <a href="mailto:support@monobyte.studio">Email Us</a>
-            </div>
 
-            <div class="footer-group">
-                <h3>Legal</h3>
-                <a href="https://onlyonemessage.monobyte.studio/terms">Terms of Service</a>
-                <a href="https://onlyonemessage.monobyte.studio/privacy">Privacy Policy</a>
-            </div>
-        </div>
-
-        <div class="footer-logo">
-            <a href="https://monobyte.studio"><img src="../assets/icons/monobyte_full.png" alt="Monobyte Studios Logo"></a>
-        </div>
-        <p>© 2025 Monobyte Studios - All rights reserved.</p>
-    </footer>
+                } catch (error) {
+                    console.error("Error loading footer:", error);
+                }
+            });
+        </script>
+    </div>
 
 </body>
 </html>
-

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../assets/icons/logowhite.png" type="image/png">
+    <title>OnlyOneMessage Docs</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-json.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/docs.css">
+
+    <!-- Google tag (gtag.js, Monobyte Studios) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GE0XGGGR8E"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GE0XGGGR8E');
+    </script>
+</head>
+
+<body>
+    <div id="sidebar-container"></div>
+        <script>
+            fetch('/assets/html/docsidebar.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('sidebar-container').innerHTML = html;
+
+                const links = document.querySelectorAll('#sidebar-container a');
+                let currentPath = window.location.pathname;
+
+                // normalize paths
+                if (currentPath.endsWith('/')) currentPath = currentPath.slice(0, -1);
+
+                links.forEach(link => {
+                let linkPath = new URL(link.href).pathname;
+                if (linkPath.endsWith('/')) linkPath = linkPath.slice(0, -1);
+
+                if (linkPath.endsWith('/index.html')) linkPath = linkPath.replace('/index.html', '');
+
+                if (currentPath === linkPath) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+                });
+            });
+        </script>
+    </div>
+
+
+    <div class="main-content">
+        <h1>Getting Started</h1>
+        <p>This is a simple guide on how to get started with OnlyOneMessage, from inviting the bot to what to do next, in complete detail.</p>
+
+        <div class="hint-card hint">
+            <div class="icon">💡</div>
+            <p>
+                OnlyOneMessage is a Discord bot that allows members to send a single message in a chosen channel.
+            </p>
+        </div>
+
+
+        <h2><i>1.</i> Invite OnlyOneMessage</h2>
+        <p>
+            You can invite OnlyOneMessage in a lot of ways, including on this website, top.gg, or 
+            <a href="/invite" target="_blank">
+                right here.
+            </a>
+        </p>
+
+        <p>OnlyOneMessage will ask you for these permissions when inviting it:</p>
+        <ul>
+            <li><strong>Add Reactions</strong> - Used for blacklist statuses.</li>
+            <li><strong>Manage Channels</strong> - Allows creation of the OnlyOneMessage channel.</li>
+            <li><strong>Manage Roles</strong> - Allows OnlyOneMessage to create blacklist/whitelist roles and assign them to members.</li>
+            <li><strong>Manage Threads</strong> - Used to deny threads permissions.</li>
+        </ul>
+
+        <div class="image">
+            <img src="../../assets/docs/invite.png" alt="Invite">
+            <p class="caption">The Discord invite menu for OnlyOneMessage.</p>
+        </div>
+
+
+        <h2><i>2.</i> Use <code>/setup</code></h2>
+        <p><code>/setup</code> automatically configures your server for OnlyOneMessage to function.</p>
+        <p>Once this command is run, OnlyOneMessage will send a <strong>confirmation embed</strong>, showing what it'll do:</p>
+        <ul>
+            <li><strong>Channels</strong> - If a custom channel is set, no channel will be created. Otherwise, one will.</li>
+            <li><strong>Roles</strong> - The roles <code>@OnlyOneMessageBlacklist</code> and <code>@OnlyOneMessageWhitelist</code> will be created.</li>
+            <li><strong>Configure Permissions</strong> - OnlyOneMessage will assign the blacklist role to the set channel, and assign restrictions to it.</li>
+        </ul>
+
+        <div class="hint-card hint">
+            <div class="icon">💡</div>
+            <p>
+                You can change the names of the blacklist & whitelist roles and OnlyOneMessage will respect it. [Only applies if your server is setup on v1.5 or higher].
+            </p>
+        </div>
+
+        <div class="image">
+            <img src="../../assets/docs/setup.png" alt="Invite">
+            <p class="caption">The confirmation embed from running /setup.</p>
+        </div>
+
+        <h2><i>3.</i> Customization</h2>
+        <p>You can customize your channels and roles to your liking. You can also customize bot behavior with <code>/config</code>.</p>
+        <p>If you would like to know a detailed list of commands, refer to the <code>Commands</code> section.</p>
+
+
+
+    </div>
+
+</body>
+</html>
