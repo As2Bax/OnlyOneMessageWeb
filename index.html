@@ -239,7 +239,7 @@
 <script> // for the stats section
     async function updateStats() {
         try {
-            const response = await fetch("http://127.0.0.1:9300/v1/stats");
+            const response = await fetch("https://oomapi.monobyte.studio/v1/stats");
             if (!response.ok) throw new Error("Failed to fetch stats from the OnlyOneMessage API.");
 
             const data = await response.json();
