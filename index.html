@@ -8,20 +8,25 @@
     <link rel="stylesheet" href="/assets/css/main.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-
-    <!-- Google tag (gtag.js, Monobyte Studios) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GE0XGGGR8E"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-GE0XGGGR8E');
-    </script>
 </head>
 
 <body>
+    <script>
+    (function(d,t) {
+        var BASE_URL="https://chatwoot.monobyte.studio";
+        var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=BASE_URL+"/packs/js/sdk.js";
+        g.async = true;
+        s.parentNode.insertBefore(g,s);
+        g.onload=function(){
+        window.chatwootSDK.run({
+            websiteToken: 'eTXkEpfJU1ifaTMmjQhe4QE1',
+            baseUrl: BASE_URL
+        })
+        }
+    })(document,"script");
+    </script>
+
 
     <header>
         <nav class="navbar">
@@ -109,22 +114,22 @@
     <section class="features">
         <h2>✨ <span class="highlight">Powerful</span> Features</h2>
         <p>
-            OnlyOneMessage offers a collection of features designed to enhance your Discord server's experience,
+            OnlyOneMessage offers a <strong>collection</strong> of features designed to enhance your Discord server's experience,
             whether you're controlling message flow or having fun.
         </p>
 
         <div class="features-cards">
             <div class="feature-card">
                 <h3>😇 Whitelisting</h3>
-                <p>Whitelist admins so they're never restricted by OnlyOneMessage.</p>
+                <p>Whitelist admins so they're <strong>never</strong> restricted by OnlyOneMessage.</p>
             </div>
             <div class="feature-card">
                 <h3>📰 Logging</h3>
-                <p>Send all actions to a dedicated channel and filter events by category for easy moderation.</p>
+                <p>Send all actions to a <strong>dedicated</strong> channel and filter events by category for easy moderation.</p>
             </div>
             <div class="feature-card">
                 <h3>⌛ Automatic Unblacklist</h3>
-                <p>Automatically remove restrictions after 3 hours up to 1 month.</p>
+                <p>Automatically remove restrictions after 3 hours up to <strong>a month</strong>.</p>
             </div>
             <div class="feature-card">
                 <h3>✅ Easy to Use</h3>
@@ -132,11 +137,19 @@
             </div>
             <div class="feature-card">
                 <h3>🗑️ Message Recovery</h3>
-                <p>Let members regain access to the channel if their message is deleted.</p>
+                <p>Let members <strong>regain</strong> access to the channel if their message is deleted.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔏 DM Members</h3>
+                <p>Boost member engagement with <strong>direct messages</strong> related to their blacklist. Members are fully in control and can opt in or out at any time.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🪡 Allow Threads</h3>
+                <p><strong>Spark</strong> engagement by allowing members to create threads about peoples one-message.</p>
             </div>
             <div class="feature-card">
                 <h3>🛠️ Full Customization</h3>
-                <p>Configure everything easily with <code>/config</code>, featuring an interactive UI powered by Discord's latest <code>Components V2</code>.</p>
+                <p>Configure <strong>everything</strong> easily with <code>/config</code>, featuring an interactive UI powered by Discord's latest <code>Components V2</code>.</p>
             </div>
     </section>
 
@@ -191,7 +204,7 @@
 
     <section class="feedback">
         <h2>💬 Help <span class="highlight">Shape</span> OnlyOneMessage</h2>
-        <p>OnlyOneMessage is constantly improving, and your feedback helps guide its future. 
+        <p>OnlyOneMessage is <strong>constantly</strong> improving, and your feedback helps guide its future. 
         Found a bug, or have a feature idea? We'd love to hear from you.</p>
 
         <div class="buttons">
@@ -203,7 +216,7 @@
     <section class="cta">
         <div class="cta-content">
             <h2>Ready to <i>simplify</i> your server?</h2>
-            <p>Invite OnlyOneMessage today and take control of your channels; one message at a time.</p>
+            <p>Invite OnlyOneMessage today and take control of your channels; <strong>one message at a time.</strong></p>
 
             <div class="buttons">
                 <a href="/invite" class="btn primary">Invite OnlyOneMessage</a>
@@ -239,7 +252,7 @@
 <script> // for the stats section
     async function updateStats() {
         try {
-            const response = await fetch("https://oomapi.monobyte.studio/v1/stats");
+            const response = await fetch("https://oom-api.monobyte.studio/v1/stats");
             if (!response.ok) throw new Error("Failed to fetch stats from the OnlyOneMessage API.");
 
             const data = await response.json();

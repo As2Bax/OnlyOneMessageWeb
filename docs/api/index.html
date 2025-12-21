@@ -11,16 +11,6 @@
     <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-json.min.js"></script>
     <link rel="stylesheet" href="/assets/css/docs.css">
-
-    <!-- Google tag (gtag.js, Monobyte Studios) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GE0XGGGR8E"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-GE0XGGGR8E');
-    </script>
 </head>
 
 <body>
@@ -61,7 +51,7 @@
             This API is used on our OnlyOneMessage website and status page.
         </p>
         <p>
-            This API is available at <code>https://oomapi.monobyte.studio</code>.
+            This API is available at <code>https://oom-api.monobyte.studio</code>.
         </p>
 
         <div class="hint-card hint">
@@ -79,7 +69,7 @@
             metrics, latency, and more.
         </p>
 
-        <pre><code class="language-http">GET https://oomapi.monobyte.studio/v1/stats</code></pre>
+        <pre><code class="language-http">GET https://oom-api.monobyte.studio/v1/stats</code></pre>
 
         <pre><code class="language-json">{
     "version": "major.minor.micro",
@@ -101,7 +91,7 @@
             Check the bot's online status and shard latencies.
         </p>
 
-        <pre><code class="language-http">GET https://oomapi.monobyte.studio/v1/health</code></pre>
+        <pre><code class="language-http">GET https://oom-api.monobyte.studio/v1/health</code></pre>
 
         <pre><code class="language-json">{
     "database": "[online/offline]",
