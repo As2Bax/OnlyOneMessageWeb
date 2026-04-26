@@ -1,0 +1,136 @@
+<main class="main-content">
+    <h1>Commands</h1>
+    <p>A detailed list of OnlyOneMessage's commands, what it does, its restrictions, and its parameters.</p>
+
+    <div class="hint-card hint">
+        <div class="icon">💡</div>
+        <p>
+            OnlyOneMessage uses a simple and intuitive command system to provide a seamless experience for administrators. 
+            There is <b>no web-dashboard</b> for this bot... yet!
+        </p>
+    </div>
+
+    <h2>/addchannel</h2>
+    <p>Add a channel for OnlyOneMessage to manage. A blacklist role will be created for the channel, allowing OnlyOneMessage to control cooldowns.</p>
+    <p>Required Permissions: <b><code>Manage Roles</code>, <code>Manage Channels</code> & <code>Manage Threads</code></b></p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>channel</code></td>
+                <td>Text Channel</td>
+                <td>The channel where OnlyOneMessage will manage messages.</td>
+            </tr>
+
+            <tr>
+                <td><code>duration</code></td>
+                <td>Select</td>
+                <td>How long the blacklist role will be applied for, up to forever.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="hint-card hint">
+        <div class="icon">💡</div>
+        <p>
+            You can add as many channels as you want, and each one can have a different duration.
+            If a channel already has a built-in cooldown applied, the bot will remove it.
+        </p>
+    </div>
+
+
+    <h2>/removechannel</h2>
+    <p>
+        Removes a specified channel from OnlyOneMessage's configuration.
+        The created blacklist role <b>will be deleted</b>, but the channel will not. <i>(Originally did pre-v2.0).</i>
+    </p>
+
+    <p>Required Permissions: <b><code>Manage Roles</code>, <code>Manage Channels</code></b></p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>channel</code></td>
+                <td>Text Channel</td>
+                <td>The channel to remove configurations from.</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <h2>/config</h2>
+    <p>
+        Customize OnlyOneMessage's behavior for the server.
+        Changed settings will apply to the whole server.
+    </p>
+
+    <p>Required Permissions: <b><code>Manage Roles</code>, <code>Manage Channels</code></b></p>
+
+    <p>Categories:</p>
+    <ul>
+        <li><code>Logging</code> - Allow logging of bot & member actions.</li>
+        <li><code>Bot Configuration</code> - Basic management options for the bot.</li>
+    </ul>
+
+
+    <h2>/configchannel</h2>
+    <p>
+        Customize OnlyOneMessage's behavior for a specific channel. 
+        Changed settings will only apply to the specified channel.
+    </p>
+    <p>Required Permissions: <b><code>Manage Roles</code>, <code>Manage Channels</code></b></p>
+
+    <p>Categories:</p>
+    <ul>
+        <li><code>Message Options</code> - Options for managing message behavior. These include cooldowns, message recovery & reactions.</li>
+    </ul>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>channel</code></td>
+                <td>Text Channel</td>
+                <td>The channel to modify configurations for.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+    <h2>/invite</h2>
+    <p>Sends an invite link to add OnlyOneMessage to your own server. That's pretty much all to say.</p>
+
+    <h2>/feedback</h2>
+    <p>
+        Opens a Discord <code>Modal</code> to submit feedback to the OnlyOneMessage developers.
+        Please note that this is for feedback regarding the bot and not for support inquiries. 
+    </p>
+
+    <h2>/stats</h2>
+    <p>View basic statistics about OnlyOneMessage. This also includes individual server stats for blacklists and whitelists.</p>
+
+    <div class="hint-card hint">
+        <div class="icon">📰</div>
+        <p>These statistics are also available under our <b>API Reference</b>.</p>
+    </div>
+</main>

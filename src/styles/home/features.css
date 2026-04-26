@@ -1,0 +1,88 @@
+.features {
+    position: relative;
+    padding: clamp(60px, 8vw, 120px) 20px;
+    text-align: center;
+    color: #fff;
+}
+
+
+/* graphics */
+.features::before {
+    content: "";
+    position: absolute;
+    top: clamp(0px, 2vw, 20px);
+    left: clamp(20px, 5vw, 50px);
+    width: clamp(100px, 20vw, 200px);
+    height: clamp(100px, 20vw, 200px);
+    background: linear-gradient(135deg, #5808fb, #9929ea);
+    border-radius: 50% 50% 0 50%;
+    pointer-events: none;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.features::after {
+    content: "";
+    position: absolute;
+    bottom: clamp(0px, 2vw, 20px);
+    right: clamp(20px, 5vw, 50px);
+    width: clamp(100px, 20vw, 200px);
+    height: clamp(100px, 20vw, 200px);
+    background: linear-gradient(135deg, #5808fb, #9929ea);
+    border-radius: 0% 50% 50% 50%;
+    pointer-events: none;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+
+
+@media (max-width: 700px) {
+    .features::before,
+    .features::after {
+        display: none;
+    }
+}
+
+/* feature cards */
+.features-cards {
+    display: flex;
+    flex-wrap: wrap; /* allows multiple rows */
+    gap: clamp(20px, 2vw, 40px);
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+}
+
+.feature-card {
+    flex: 1 1 clamp(220px, 25vw, 300px);
+    max-width: clamp(220px, 25vw, 300px);
+    background-color: #1a1a1a;
+    border-radius: 12px;
+    padding: clamp(30px, 2.5vw, 30px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, outline-color 0.5s ease;
+    cursor: default;
+    text-align: center;
+
+    outline: 2px solid #5808fb;
+    outline-offset: 3px;
+    box-shadow: 0 0 35px rgba(88, 8, 251, 0.3);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    outline-color: #9929ea;
+    box-shadow: 0 0 35px rgba(153, 41, 234, 0.6);
+}
+
+.feature-card p {
+    font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+    color: #ccc;
+    text-align: center;
+    opacity: 1;
+}
+
+.features p {
+    margin-bottom: 50px;
+}

@@ -1,0 +1,42 @@
+---
+import "../styles/global.css";
+
+import "../styles/shared/navbar.css";
+import "../styles/shared/footer.css";
+import "../styles/shared/pagecard.css";
+import "../styles/shared/textelements.css";
+import "../styles/shared/buttons.css";
+
+import "../styles/home/landing.css";
+import "../styles/home/about.css";
+import "../styles/home/features.css";
+import "../styles/home/stats.css";
+import "../styles/home/feedback.css";
+import "../styles/home/cta.css";
+
+
+import Footer from "../components/shared/Footer.astro";
+import Navbar from "../components/shared/Navbar.astro";
+import Animations from "../components/shared/Animations.astro";
+
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/img/logos/logowhite.png" type="image/png">
+    
+    <title>OnlyOneMessage</title>
+  </head>
+
+  <body>
+    <Animations />
+    <Navbar />
+
+    <slot /> <!-- page content -->
+
+    <Footer />
+  </body>
+</html>

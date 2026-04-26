@@ -1,0 +1,44 @@
+.fullpage-card {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: calc(100vh - 80px);
+    padding: 150px 30px 60px;
+    color: #ddd;
+    box-sizing: border-box;
+}
+
+.fullpage-card-content {
+    background: #111;
+    outline: 2px solid #5808fb;
+    outline-offset: 5px;
+    border-radius: 16px;
+    padding: 40px;
+    max-width: 900px;
+    width: 90%;
+    text-align: center;
+}
+
+/* center everything to the left */
+.fullpage-card-content {
+    text-align: left;
+}
+.fullpage-card-content p {
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    color: #ccc;
+    text-align: left;
+
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+}
+.fullpage-card-content li {
+    margin-bottom: 15px;
+    font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+    color: #ccc;
+}
+.fullpage-card-content a {
+    color: #5808fb;
+    text-decoration: none;
+    font-weight: 600;
+}

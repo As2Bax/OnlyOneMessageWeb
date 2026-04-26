@@ -1,0 +1,23 @@
+<div class="sidebar">
+    <img src="/img/logos/logowhite.png" alt="OnlyOneMessage Logo" class="logo">
+
+    <a href="/docs">Introduction</a>
+    <a href="/docs/getstarted">Getting Started</a>
+    <a href="/docs/commands">Commands</a>
+    <a href="/docs/api">API Reference</a>
+
+    <p>© 2025-2026 Monobyte Studios - All rights reserved.</p>
+</div>
+
+<script>
+    // @ts-nocheck
+    const currentPath = window.location.pathname.replace(/\/$/, "");
+
+    document.querySelectorAll(".sidebar a").forEach(link => {
+    let linkPath = new URL(link.href).pathname.replace(/\/$/, "");
+
+    if (linkPath === currentPath) {
+        link.classList.add("active");
+    }
+    });
+</script>

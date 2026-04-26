@@ -1,0 +1,65 @@
+<section class="about">
+
+    <section class="image-gallery">
+        <div class="gallery-track">
+            <!-- astro-ignore -->
+            <img src="/img/carousel/img1.png" alt="" loading="lazy" decoding="async">
+            <img src="/img/carousel/img2.png" alt="" loading="lazy" decoding="async">
+            <img src="/img/carousel/img3.png" alt="" loading="lazy" decoding="async">
+            <img src="/img/carousel/img4.png" alt="" loading="lazy" decoding="async">
+        </div>
+      </section>
+
+    <p>
+        OnlyOneMessage allows you to push your channel cooldowns
+        <span class="highlight">beyond the limit.</span>
+        It extends Discord's default 6-hour slowdown up to
+        <span class="highlight">forever.</span>
+        Whether you're managing a busy server or enforcing guidelines, OnlyOneMessage gives you the tools.
+    </p>
+
+</section>
+
+
+
+<script>
+// @ts-nocheck
+
+document.addEventListener("DOMContentLoaded", () => {
+    const track = document.querySelector(".gallery-track");
+    if (!track) return;
+
+    const images = Array.from(track.children);
+
+    const originalWidth = images.reduce((sum, img) => {
+        return sum + img.getBoundingClientRect().width;
+    }, 0);
+
+    // clone the images to create a seamless loop
+    images.forEach(img => {
+        track.appendChild(img.cloneNode(true));
+    });
+
+    let NormalSpeed = 1;
+    let SlowSpeed = 0.5;
+
+    let speed = NormalSpeed;
+    let position = 0;
+
+    function scrollGallery() {
+        position -= speed;
+
+        if (Math.abs(position) >= originalWidth) {
+            position += originalWidth;
+        }
+
+        track.style.transform = `translateX(${position}px)`;
+        requestAnimationFrame(scrollGallery);
+    }
+
+    scrollGallery();
+
+    track.parentElement.addEventListener("mouseenter", () => speed = SlowSpeed);
+    track.parentElement.addEventListener("mouseleave", () => speed = NormalSpeed);
+});
+</script>

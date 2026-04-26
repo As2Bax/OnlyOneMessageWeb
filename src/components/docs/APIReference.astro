@@ -1,0 +1,85 @@
+---
+// @ts-nocheck
+import { Code } from "astro:components";
+---
+
+<main class="main-content">
+
+    <h1>API Reference</h1>
+
+    <p>
+        Access insights from OnlyOneMessage through our REST API, available since version 1.7.
+        This is used for our frontend operations.
+    </p>
+
+    <p>
+        You can access the API at <code>https://oom-api.monobyte.studio</code>.
+    </p>
+
+    <div class="hint-card hint">
+        <div class="icon">💡</div>
+        <p>
+            This API is currently a work in progress. You may encounter occasional issues.
+            If you do, please join our Support Server and create a ticket so we can patch it up.
+        </p>
+    </div>
+
+    <h2>/v1/stats</h2>
+
+    <p>
+        Retrieve general statistics about OnlyOneMessage. Data includes its version, message
+        metrics, latency, and more.
+    </p>
+
+    <Code
+        lang="http"
+        code={`GET https://oom-api.monobyte.studio/v1/stats`}
+    />
+
+    <Code
+        lang="js"
+        code={`{
+        "version": "2.0.0", // Major.Minor.Micro
+        "build": "2026.4.15", // Year.Month.Day
+        "latency": 32, // milliseconds
+        "uptime": 5, // seconds
+        "shards": 4,
+        "guilds": 64,
+        "members": 1337,
+        "channels": 60,
+        "whitelists": 500,
+        "blacklists": 500,
+        "totalmsgs": 1000
+    }`}
+    />
+
+    <h2>/v1/health</h2>
+
+    <p>
+        Check the bot's online status and shard latencies.
+    </p>
+
+    <Code
+        lang="http"
+        code={`GET https://oom-api.monobyte.studio/v1/health`}
+    />
+
+    <Code
+        lang="js"
+        code={`{
+        "database": "online", // "online" or "offline"
+        "health": "online", // "online" or "degraded"
+        "shards": {
+            "0": {
+            "latency": 0,
+            "status": "online"
+            },
+            "1": {
+            "latency": 0,
+            "status": "online"
+            }
+        }
+    }`}
+    />
+
+</main>

@@ -1,0 +1,108 @@
+<section class="statistics">
+    <h2>📈 See the <span class="highlight">Stats</span></h2>
+    <p>
+        OnlyOneMessage is trusted by <span class="highlight">many communities</span> to help manage their own one-message system:
+    </p>
+
+    <div class="stat-cards">
+        <div class="stat-card">
+            <h2>🤖</h2>
+            <h4 class="servers">N/A+</h4>
+            <p>Servers currently monitored</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>🖥️</h2>
+            <h4 class="channels">N/A+</h4>
+            <p>Channels currently monitored</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>👥</h2>
+            <h4 class="members">N/A+</h4>
+            <p>Members monitored</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>💭</h2>
+            <h4 class="totalmsgs">N/A+</h4>
+            <p>Total messages processed</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>😇</h2>
+            <h4 class="whitelists">N/A+</h4>
+            <p>Messages whitelisted</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>⛈️</h2>
+            <h4 class="blacklists">N/A+</h4>
+            <p>Messages successfully blacklisted</p>
+        </div>
+
+    </div>
+</section>
+
+
+<script>
+    // @ts-nocheck (makes vsc shut up about errors)
+    async function updateStats() {
+        try {
+            const response = await fetch("https://oom-api.monobyte.studio/v1/stats");
+            if (!response.ok) throw new Error("Failed to fetch stats from the OnlyOneMessage API.");
+
+            const data = await response.json();
+
+            const FormatNumber = (num) => {
+                if (num >= 1_000_000) return (num / 1_000_000).toFixed(1).replace(/\.0$/, "") + "M";
+                if (num >= 1_000) return (num / 1_000).toFixed(1).replace(/\.0$/, "") + "k";
+                return num;
+            };
+
+            const AnimateNumber = (element, endValue, duration = 1200) => {
+                let startValue = 0;
+                const startTime = performance.now();
+
+                function update(currentTime) {
+                    const progress = Math.min((currentTime - startTime) / duration, 1);
+                    const value = Math.floor(progress * endValue);
+                    element.textContent = FormatNumber(value) + "+";
+                    if (progress < 1) requestAnimationFrame(update);
+                }
+
+                requestAnimationFrame(update);
+            };
+
+
+            const Stats = {
+                servers: document.querySelector(".stat-card .servers"),
+                members: document.querySelector(".stat-card .members"),
+                totalmsgs: document.querySelector(".stat-card .totalmsgs"),
+                whitelists: document.querySelector(".stat-card .whitelists"),
+                blacklists: document.querySelector(".stat-card .blacklists"),
+                channels: document.querySelector(".stat-card .channels")
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        AnimateNumber(Stats.servers, data.guilds);
+                        AnimateNumber(Stats.members, data.members);
+                        AnimateNumber(Stats.totalmsgs, data.totalmsgs);
+                        AnimateNumber(Stats.whitelists, data.whitelists);
+                        AnimateNumber(Stats.blacklists, data.blacklists);
+                        AnimateNumber(Stats.channels, data.channels);
+                        observer.disconnect(); // runs only once
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            observer.observe(document.querySelector(".stat-cards"));
+        } catch (err) {
+            console.error("Error updating stats:", err);
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", updateStats);
+</script>
