@@ -1,0 +1,80 @@
+<main class="main-content">
+    <h1>Getting Started</h1>
+    <p>This is a simple guide on how to get started with OnlyOneMessage, from inviting the bot to what to do next, in complete detail.</p>
+
+    <div class="hint-card hint">
+        <div class="icon">💡</div>
+        <p>
+            OnlyOneMessage is a utility bot that allows you to increase the default 6-hour slowmode built into Discord to a cooldown of your choice, up to forever.
+        </p>
+    </div>
+
+
+    <h2><i>1.</i> Invite OnlyOneMessage</h2>
+    <p>
+        Invite OnlyOneMessage using
+        <a href="/invite" target="_blank">
+            this link
+        </a>
+        .
+    </p>
+
+    <p>OnlyOneMessage will ask you for these permissions when inviting it:</p>
+    <ul>
+        <li><strong>Manage Channels</strong> - Allows OnlyOneMessage to assign roles to channels.</li>
+        <li><strong>Manage Roles</strong> - Allows OnlyOneMessage to create blacklist roles for channels.</li>
+        <li><strong>Manage Threads</strong> - Used for denying permissions for a created blacklist role.</li>
+        <li><strong>Manage Webhooks</strong> - Allows OnlyOneMessage to manage logging for your server.</li>
+        <li><i>Other miscellaneous permissions which you can find in the menu</i></li>
+    </ul>
+
+
+    <h2><i>2.</i> Use <code>/addchannel</code></h2>
+    <p>
+        <code>/addchannel</code> will add a channel for OnlyOneMessage to use and configure. 
+        Select a cooldown from 12 hours up to forever, and OnlyOneMessage will take care of the rest.
+    </p>
+
+
+    <div class="image">
+        <img src="/img/docs/addchannel.png" alt="Invite" class="zoomable">
+        <p class="caption">The response embed after running /addchannel.</p>
+    </div>
+
+    <div class="hint-card hint">
+        <div class="icon">💡</div>
+        <p>
+            For every channel setup under OnlyOneMessage, <b>a new role will be made</b>. 
+            This role is used to prevent members from sending messages in the channel during their cooldown, and is automatically assigned and removed by the bot.
+        </p>
+    </div>
+
+    <div class="hint-card warning">
+        <div class="icon">⚠️</div>
+        <p>
+            Remember to keep the generated role in a safe place, as deleting the role <b>will break your setup</b>.
+            If you have accidentally deleted the role, you can run <code>/addchannel</code> again to fix it.
+        </p>
+    </div>
+
+
+
+    <h2><i>3.</i> Customization</h2>
+    <p>
+        You can add more channels with the <code>/addchannel</code> command. 
+        Alternatively, you can use the <code>/configchannel</code> command to modify existing channel settings.
+        Use the <code>/removechannel</code> command to remove a channel from OnlyOneMessage's configuration.
+    </p>
+
+    <p>
+        Have fun with OnlyOneMessage! Feel free to join the <a href="/invite" target="_blank">Discord server</a> and leave a review on our <a href="https://top.gg/bot/1258462729602203768" target="_blank">top.gg page</a>.
+    </p>
+
+    <div class="hint-card hint">
+        <div class="icon">💡</div>
+        <p>
+            Using <code>/removechannel</code> will <b>not</b> delete the specified channel, but formerly did pre-v2.0.
+        </p>
+    </div>
+
+</main>

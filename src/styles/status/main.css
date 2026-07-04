@@ -1,0 +1,231 @@
+.status-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+
+.status-header {
+    text-align: left;
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
+
+.status-overall {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.status-overall-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #555;
+    flex-shrink: 0;
+    transition: background 0.3s ease;
+}
+
+.status-overall-label {
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+
+.status-overall-sub {
+    font-size: 1rem;
+    color: #666;
+    margin: 4px 0 0 0;
+    padding: 0;
+    text-align: left;
+}
+
+
+
+/* cards */
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.status-card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 18px 20px;
+
+    outline: 2px solid #2a2a2a;
+    outline-offset: 3px;
+    transition: outline-color 0.2s ease;
+}
+
+.status-card:hover {
+    outline-color: #3a3a3a;
+}
+
+.status-card-label {
+    font-size: 0.70rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 10px;
+}
+
+
+.status-card-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    min-width: 0;
+}
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #444;
+    flex-shrink: 0;
+    transition: background 0.3s ease;
+}
+
+.status-card-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.status-card-sub {
+    font-size: 0.78rem;
+    color: #666;
+}
+
+
+
+
+/* shards */
+.shards {
+    margin-bottom: 24px;
+}
+
+.shards-title {
+    font-size: 0.8rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+
+
+
+.shards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.shard-card {
+    background: #1a1a1a;
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    outline: 2px solid #2a2a2a;
+    outline-offset: 3px;
+    transition: outline-color 0.2s ease;
+}
+.shard-card:hover {
+    outline-color: #3a3a3a;
+}
+
+
+
+.shard-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.shard-name {
+    font-size: 0.82rem;
+    color: #aaa;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.shard-lat {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+/* shard stats */
+.shard-card-stats {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    border-top: 1px solid #2a2a2a;
+    padding-top: 8px;
+}
+.shard-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: center;
+    flex: 1;
+    text-align: center;
+}
+
+.shard-stat-label {
+    font-size: 0.65rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.shard-stat-value {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+}
+
+
+
+/* status colors */
+.dot-online  { background: #3cff8f; }
+.dot-degraded { background: #ffcc00; }
+.dot-offline  { background: #ff4444; }
+
+
+
+/* footer */
+.status-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 16px;
+    border-top: 1px solid #1e1e1e;
+}
+
+.status-footer span {
+    font-size: 0.78rem;
+    color: #666;
+    margin-bottom: 25px;
+}

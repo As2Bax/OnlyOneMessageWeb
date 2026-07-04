@@ -1,0 +1,60 @@
+<button class="sidebar-mobile-toggle" id="sidebarToggle" aria-label="Open navigation">☰</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<div class="sidebar">
+    <a href="/" class="sidebar-logo-link">
+        <img src="/img/logos/logowhite.png" alt="OnlyOneMessage Logo" class="logo">
+    </a>
+
+    <a href="/docs">👋 Introduction</a>
+    <a href="/docs/getstarted">🚀 Getting Started</a>
+    <a href="/docs/commands">⌨️ Commands</a>
+    <a href="/docs/api">🔌 API Reference</a>
+
+    <p>© 2025-2026 Monobyte Studios - All rights reserved.</p>
+</div>
+
+<script>
+    // @ts-nocheck
+    const currentPath = window.location.pathname.replace(/\/$/, "");
+    document.querySelectorAll(".sidebar a:not(.sidebar-logo-link)").forEach(link => {
+        let linkPath = new URL(link.href).pathname.replace(/\/$/, "");
+        if (linkPath === currentPath) {
+            link.classList.add("active");
+        }
+    });
+</script>
+
+
+
+<script>
+    // @ts-nocheck
+    const toggle = document.getElementById("sidebarToggle");
+    const overlay = document.getElementById("sidebarOverlay");
+    const sidebar = document.querySelector(".sidebar");
+
+    function openSidebar() {
+        sidebar.classList.add("open");
+        overlay.classList.add("active");
+        toggle.textContent = "✕";
+        toggle.style.left = (sidebar.offsetWidth + 14) + "px";
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove("open");
+        overlay.classList.remove("active");
+        toggle.textContent = "☰";
+        toggle.style.left = "14px";
+    }
+
+    toggle.addEventListener("click", () => {
+        sidebar.classList.contains("open") ? closeSidebar() : openSidebar();
+    });
+
+    overlay.addEventListener("click", closeSidebar);
+
+    document.querySelectorAll(".sidebar a").forEach(link => {
+        link.addEventListener("click", closeSidebar);
+    });
+</script>

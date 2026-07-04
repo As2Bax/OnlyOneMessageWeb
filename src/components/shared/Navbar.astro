@@ -1,0 +1,54 @@
+<header>
+  <nav class="navbar">
+
+    <a href="/" class="logo-link">
+      <img
+        src="https://cdn.monobyte.studio/onlyonemessageweb/logos/logowhite.png"
+        alt="OnlyOneMessage Logo"
+        class="logo"
+      >
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="/docs">Documentation</a></li>
+      <li><a href="https://github.com/MonobyteStudios/OnlyOneMessage">Source Code</a></li>
+      <li><a href="/status">Status</a></li>
+      <li><a href="/changelog">Changelog</a></li>
+    </ul>
+
+    <div class="buttons">
+      <a href="/invite" class="btn primary">Get Started</a>
+      <a href="/support" class="btn secondary">Support</a>
+    </div>
+
+  </nav>
+</header>
+
+
+<script>
+    // @ts-nocheck
+    document.addEventListener("DOMContentLoaded", async () => {
+        const statusEl = document.querySelector(".nav-status");
+        const dotEl = document.querySelector(".nav-status-dot");
+
+        try {
+            const res = await fetch("https://oom-api.monobyte.studio/v1/health");
+            if (res.ok) {
+                statusEl.style.color = "#5dca91";
+                statusEl.style.outlineColor = "rgba(93, 202, 145, 0.25)";
+                statusEl.style.background = "rgba(93, 202, 145, 0.08)";
+                dotEl.style.background = "#5dca91";
+                statusEl.childNodes[statusEl.childNodes.length - 1].textContent = " Operational";
+            } else {
+                throw new Error();
+            }
+
+        } catch {
+            statusEl.style.color = "#f09595";
+            statusEl.style.outlineColor = "rgba(240, 149, 149, 0.25)";
+            statusEl.style.background = "rgba(240, 149, 149, 0.08)";
+            dotEl.style.background = "#f09595";
+            statusEl.childNodes[statusEl.childNodes.length - 1].textContent = " Degraded";
+        }
+    });
+</script>

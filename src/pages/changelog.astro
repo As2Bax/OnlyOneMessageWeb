@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Primary.astro";
+import Main from "../components/changelog/Main.astro";
+
+// get the files in versions
+const modules = import.meta.glob("../components/changelog/versions/*.astro", {
+  eager: true
+});
+
+// sort them by version number (descending)
+const versions = Object.entries(modules)
+  .sort(([aPath], [bPath]) => {
+    const va = aPath.match(/v(\d+\.\d+\.\d+)/)?.[1] ?? "0.0.0";
+    const vb = bPath.match(/v(\d+\.\d+\.\d+)/)?.[1] ?? "0.0.0";
+
+    return vb.localeCompare(va, undefined, { numeric: true });
+  })
+  .map(([, mod]) => (mod as any).default);
+---
+
+<Layout>
+  <Main versions={versions} /> <!-- pass it over to main -->
+</Layout>

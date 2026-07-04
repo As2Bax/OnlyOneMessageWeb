@@ -1,0 +1,123 @@
+.landing {
+    height: 100vh;
+    background: linear-gradient(to bottom, #5808fb, #9929ea);
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    outline: 3px solid rgb(88, 8, 251);
+}
+
+
+/* landing gif */
+.landing-gif {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateY(20px); /* start slightly lower */
+    z-index: 0; /* behind the content */
+    
+    max-width: 60%;
+    max-height: 60%;
+
+    pointer-events: none;
+    opacity: 0;
+
+    animation: animGif 0.5s ease forwards;
+}
+
+@keyframes animGif {
+    to {
+        opacity: 0.1;
+        transform: translate(-50%, -50%) translateY(0);
+    }
+}
+
+
+/* grid */
+.landing::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+}
+
+
+/* scroll-down arrow */
+.scroll-down {
+    position: absolute;
+    bottom: 30px;
+    font-size: 4rem;
+    animation: bounce 1.5s infinite;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+}
+
+
+/* stats strip */
+.landing-stats {
+    display: flex;
+    gap: 36px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 2px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+.landing-stat-num {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: 700;
+    color: #fff;
+}
+
+.landing-stat-label {
+    font-size: clamp(0.65rem, 1.5vw, 0.75rem);
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.landing-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+
+.landing-stat-num {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.landing-stat-label {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+@media (max-width: 480px) {
+    .landing-stats {
+        gap: 20px;
+    }
+}

@@ -1,0 +1,85 @@
+---
+interface Props {
+  versions: any[];
+}
+
+const { versions } = Astro.props as Props;
+---
+
+<section class="changelog-section">
+  <div class="changelog-header"> <!-- title -->
+    <h2>Changelog</h2>
+    <p>
+      The latest additions to OnlyOneMessage. A more detailed version can be viewed in our
+      <a href="/support">support server</a>.
+    </p>
+  </div>
+
+  <!-- put the cards in based on the versions array -->
+  <div class="changelog-grid">
+    {versions.map((Component) => (
+      <Component />
+    ))}
+  </div>
+
+  <div class="changelog-pagination">
+    <button id="prevPage">←</button>
+    <span id="pageInfo">-</span>
+    <button id="nextPage">→</button>
+  </div>
+</section>
+
+
+
+
+<script>
+  // @ts-nocheck
+
+  const CardsPerPage = 5;
+
+  let currentPage = 1;
+  let cards = [];
+
+  function renderPage() {
+      if (!cards.length) return;
+
+      const totalPages = Math.ceil(cards.length / CardsPerPage);
+
+      const start = (currentPage - 1) * CardsPerPage;
+      const end = start + CardsPerPage;
+
+      cards.forEach((card, i) => {
+          card.style.display = (i >= start && i < end) ? "block" : "none";
+      });
+
+      const pageInfo = document.getElementById("pageInfo");
+      const prev = document.getElementById("prevPage");
+      const next = document.getElementById("nextPage");
+
+      if (pageInfo) pageInfo.textContent = `Page ${currentPage} / ${totalPages}`;
+      if (prev) prev.disabled = currentPage === 1;
+      if (next) next.disabled = currentPage === totalPages;
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+      cards = Array.from(document.querySelectorAll(".changelog-card"));
+
+      document.getElementById("prevPage")?.addEventListener("click", () => {
+          if (currentPage > 1) {
+              currentPage--;
+              renderPage();
+          }
+      });
+
+      document.getElementById("nextPage")?.addEventListener("click", () => {
+          const totalPages = Math.ceil(cards.length / CardsPerPage);
+
+          if (currentPage < totalPages) {
+              currentPage++;
+              renderPage();
+          }
+      });
+
+      renderPage();
+  });
+</script>

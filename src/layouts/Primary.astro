@@ -1,0 +1,89 @@
+---
+import "../styles/global.css";
+import "../styles/shared/navbar.css";
+import "../styles/shared/footer.css";
+import "../styles/shared/pagecard.css";
+import "../styles/shared/textelements.css";
+import "../styles/shared/buttons.css";
+import "../styles/home/landing.css";
+import "../styles/home/about.css";
+import "../styles/home/features.css";
+import "../styles/home/stats.css";
+import "../styles/home/feedback.css";
+import "../styles/home/cta.css";
+import "../styles/shared/chips.css";
+import "../styles/status/main.css";
+import "../styles/changelog/main.css";
+
+import Footer from "../components/shared/Footer.astro";
+import Navbar from "../components/shared/Navbar.astro";
+import Animations from "../components/shared/Animations.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = "OnlyOneMessage",
+  description = "OnlyOneMessage gives you powerful tools to manage channel slowmodes with ease. Set indefinite cooldowns, add visual indicators, and more, keeping your channels organized and spam-free.",
+  image = "/img/logos/banner.png",
+} = Astro.props;
+
+const canonicalURL = Astro.url.href;
+---
+
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/img/logos/logowhite.png" type="image/png" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- open graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="OnlyOneMessage" />
+
+    <!-- twitter/x -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+  </head>
+
+  <body>
+    <Animations />
+    <Navbar />
+    <slot />
+    <Footer />
+  </body>
+</html>
+
+
+<script>
+  (function(d,t) {
+    var BASE_URL="https://chatwoot.monobyte.studio";
+    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=BASE_URL+"/packs/js/sdk.js";
+    g.async = true;
+    s.parentNode.insertBefore(g,s);
+    g.onload=function(){
+      window.chatwootSDK.run({
+        websiteToken: 'vtWqVZ6vk3xC6BqgZA6GrDNW',
+        baseUrl: BASE_URL
+      })
+    }
+  })(document,"script");
+</script>

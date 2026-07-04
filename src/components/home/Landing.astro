@@ -1,0 +1,56 @@
+<section class="landing">
+    <div class="landing-content">
+        <img src="/img/logos/logoanimated.gif" class="landing-gif" alt="OnlyOneMessage logo animation">
+        <a href="/changelog" class="chip green">🎉 V2.0 - Out Now!</a>
+
+        <h1>OnlyOneMessage</h1>
+        <p>Command Every Message.</p>
+
+        <div class="buttons">
+            <a href="/invite" class="btn primary">Get Started</a>
+            <a href="/support" class="btn secondary">Support Server</a>
+        </div>
+
+        <div class="landing-stats">
+            <div class="landing-stat">
+                <span class="landing-stat-num" id="Servers">—</span>
+                <span class="landing-stat-label">Servers</span>
+            </div>
+            <div class="landing-stat">
+                <span class="landing-stat-num" id="Members">—</span>
+                <span class="landing-stat-label">Members reached</span>
+            </div>
+            <div class="landing-stat">
+                <span class="landing-stat-num" id="Messages">—</span>
+                <span class="landing-stat-label">Messages processed</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="scroll-down">
+        <span>↓</span>
+    </div>
+</section>
+
+
+<script>
+    // @ts-nocheck
+    document.addEventListener("DOMContentLoaded", async () => {
+        const fmt = (num) => {
+            if (num >= 1_000_000) return (num / 1_000_000).toFixed(1).replace(/\.0$/, "") + "M+";
+            if (num >= 1_000) return (num / 1_000).toFixed(1).replace(/\.0$/, "") + "k+";
+            return num + "+";
+        };
+        try {
+            const res = await fetch("https://oom-api.monobyte.studio/v1/stats");
+            if (!res.ok) return;
+            const d = await res.json();
+            document.getElementById("Servers").textContent = fmt(d.guilds);
+            document.getElementById("Members").textContent = fmt(d.members);
+            document.getElementById("Messages").textContent = fmt(d.totalmsgs);
+        } catch {
+            // ignore errors
+        }
+    });
+</script>

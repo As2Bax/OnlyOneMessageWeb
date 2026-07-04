@@ -1,0 +1,89 @@
+---
+import "../styles/global.css";
+import "../styles/docs/sidebar.css";
+import "../styles/docs/content.css";
+import "../styles/docs/hintcard.css";
+import "../styles/docs/images.css";
+import "../styles/docs/tables.css";
+import "../styles/docs/textelements.css";
+import "../styles/shared/chips.css";
+import Sidebar from "../components/docs/Sidebar.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = "OnlyOneMessage Docs",
+  description = "OnlyOneMessage gives you powerful tools to manage channel slowmodes with ease.",
+  image = "/img/logos/banner.png",
+} = Astro.props;
+
+const canonicalURL = Astro.url.href;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/img/logos/logowhite.png" type="image/png">
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- open graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="OnlyOneMessage" />
+
+    <!-- twitter/x -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+  </head>
+
+  <body>
+    <div class="docs-layout">
+      <Sidebar />
+
+      <main class="main-content">
+        <slot />
+      </main>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+      <img id="lightbox-img" alt="">
+    </div>
+  </body>
+</html>
+
+
+
+<script>
+    // @ts-nocheck
+    // Zoomable images in docs
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+
+        document.querySelectorAll(".zoomable").forEach(img => {
+            img.addEventListener("click", () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.add("active");
+            });
+        });
+
+        lightbox.addEventListener("click", () => {
+            lightbox.classList.remove("active");
+            lightboxImg.src = "";
+        });
+    });
+</script>

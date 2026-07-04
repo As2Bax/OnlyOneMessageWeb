@@ -1,0 +1,73 @@
+.image {
+    margin: 50px auto;
+    max-width: 90%;
+}
+
+.image img {
+    width: clamp(50px, 75%, 512px);
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    cursor: zoom-in;
+
+    position: relative;
+    z-index: 0;
+
+    outline-offset: 3px;
+    outline: 2px solid transparent;
+
+    transition: transform 0.25s ease, outline-color 0.5s ease;
+    will-change: transform;
+}
+
+/* hover effect */
+.image img:hover {
+    transform: translateY(-4px) scale(1.02);
+    outline: 2px solid #5808fb;
+    outline-offset: 3px;
+}
+
+.image .caption {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+
+/* image zoom */
+.lightbox { /* the background overlay */
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* image animation */
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+
+    transform: scale(0.85);
+    opacity: 0;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.lightbox.active img {
+    transform: scale(1);
+    opacity: 1;
+}

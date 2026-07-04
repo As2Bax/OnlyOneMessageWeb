@@ -1,0 +1,17 @@
+<script> // on-view animation
+    document.addEventListener("DOMContentLoaded", () => {
+        const elements = document.querySelectorAll("h1, h2, h3, h4, p, a, li, code, .btn, .feature-card, .stat-card");
+        elements.forEach(el => el.classList.add("animate-on-scroll"));
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("in-view");
+                    obs.unobserve(entry.target); // only once
+                }
+            });
+        }, { threshold: 0.1 });
+
+        elements.forEach(el => observer.observe(el));
+    });
+</script>

@@ -1,0 +1,51 @@
+.hint-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-radius: 10px;
+    padding: clamp(15px, 2vw, 25px);
+    margin: 50px 0;
+    line-height: 1.6;
+    background-color: #1a1a1a;
+    color: #ccc;
+    outline: 2px solid transparent;
+    outline-offset: 4px;
+    transition: outline-color 0.25s ease;
+}
+
+
+/* hint card  */
+.hint-card.hint {
+    background-color: #1c1c2a;
+    outline-color: rgba(88, 8, 251, 0.4);
+}
+
+.hint-card.warning {
+    border-color: #ffb700;
+    background-color: #2a2500;
+    color: #fff1d6;
+    outline-color: rgba(255, 183, 0, 0.4);
+}
+
+.hint-card.critical {
+    border-color: #ff3b3b;
+    background-color: #2a0000;
+    color: #ffcccc;
+    outline-color: rgba(255, 59, 59, 0.4);
+}
+
+/* icons */
+.hint-card .icon {
+    font-weight: bold;
+    font-size: 1.5em;
+    flex-shrink: 0;
+}
+
+/* text inside */
+.hint-card p {
+    margin: 0;
+    font-size: clamp(0.95rem, 1.2vw, 1.2rem);
+    flex: 1;
+    min-width: 0;
+    word-wrap: break-word;
+}

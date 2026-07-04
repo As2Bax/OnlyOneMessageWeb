@@ -1,0 +1,160 @@
+<section class="status-section">
+
+  <div class="status-header">
+    <div class="status-overall">
+      <div class="status-overall-dot" id="overallDot"></div>
+      <h4 class="status-overall-label" id="overallLabel">-</h4>
+    </div>
+    
+    <p class="status-overall-sub" id="overallSub">Fetching status from the API</p>
+  </div>
+
+  <div class="status-grid">
+    <div class="status-card">
+      <div class="status-card-label">Bot</div>
+      <div class="status-card-row"><div class="status-dot" id="botDot"></div><span class="status-card-value" id="botVal">-</span></div>
+      <div class="status-card-sub" id="botSub">Getting latency...</div>
+    </div>
+
+    <div class="status-card">
+      <div class="status-card-label">Shards</div>
+      <div class="status-card-row"><div class="status-dot" id="shardsDot"></div><span class="status-card-value" id="shardsVal">-</span></div>
+      <div class="status-card-sub" id="shardsSub">Getting shards...</div>
+    </div>
+    
+    <div class="status-card">
+      <div class="status-card-label">API</div>
+      <div class="status-card-row"><div class="status-dot" id="apiDot"></div><span class="status-card-value" id="apiVal">-</span></div>
+      <div class="status-card-sub">REST Endpoint</div>
+    </div>
+
+    <div class="status-card">
+      <div class="status-card-label">Database</div>
+      <div class="status-card-row"><div class="status-dot" id="dbDot"></div><span class="status-card-value" id="dbVal">-</span></div>
+      <div class="status-card-sub">Primary Datastore</div>
+    </div>
+  </div>
+
+  <div class="shards">
+    <div class="shards-title">Shards</div>
+    <div class="shards-grid" id="shardsGrid">
+      <div class="shard-card"><div class="status-dot"></div><span>-</span></div>
+    </div>
+  </div>
+
+  <div class="status-footer">
+    <span>Last updated: <span id="lastUpdated">-</span></span>
+  </div>
+
+</section>
+
+
+<script>
+  // @ts-nocheck
+  function dotClass(status) {
+    if (status === "online") return "dot-online";
+    if (status === "degraded") return "dot-degraded";
+    return "dot-offline";
+  }
+  function cap(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+  function setCard(dotId, valId, status, extra) {
+    const dot = document.getElementById(dotId);
+    const val = document.getElementById(valId);
+    if (dot) dot.className = "status-dot " + dotClass(status);
+    if (val) val.textContent = cap(status) + (extra ? " • " + extra : "");
+  }
+
+  async function loadHealth() {
+    document.getElementById("overallLabel").textContent = "Checking...";
+    document.getElementById("overallSub").textContent = "Fetching status from the API";
+    document.getElementById("overallDot").className = "status-overall-dot";
+
+    try {
+      const res = await fetch("http://oom-api.monobyte.studio/v1/health");
+      if (res.status === 429) {
+          document.getElementById("overallLabel").textContent = "Rate limited";
+          document.getElementById("overallSub").textContent = "Too many requests - try again in a moment";
+          document.getElementById("overallDot").className = "status-overall-dot dot-degraded";
+          return;
+      }
+
+      if (!res.ok) throw new Error("Non-OK response");
+      const d = await res.json();
+      
+      setCard("apiDot", "apiVal", d.health);
+      setCard("dbDot", "dbVal", d.database);
+
+      const shardArr = Object.entries(d.shards);
+      const avgLat = Math.round(shardArr.reduce((s, [, v]) => s + v.latency, 0) / shardArr.length * 1000);
+      document.getElementById("botSub").textContent = avgLat + "ms avg latency";
+      const anyDeg = shardArr.some(([, v]) => v.status !== "online");
+      const botStatus = anyDeg ? "degraded" : "online";
+      setCard("botDot", "botVal", botStatus);
+      document.getElementById("botSub").textContent = avgLat + "ms avg latency";
+
+      const onlineCount = shardArr.filter(([, v]) => v.status === "online").length;
+      setCard("shardsDot", "shardsVal", anyDeg ? "degraded" : "online");
+      document.getElementById("shardsVal").textContent = onlineCount + " / " + shardArr.length;
+      document.getElementById("shardsSub").textContent = "Shards online";
+
+      document.getElementById("shardsGrid").innerHTML = shardArr.map(([id, v]) => `
+        <div class="shard-card">
+          <div class="shard-card-header">
+            <div class="status-dot ${dotClass(v.status)}"></div>
+            <span class="shard-name">Shard ${id}</span>
+            <span class="shard-lat">${Math.round(v.latency * 1000)}ms</span>
+          </div>
+
+          <div class="shard-card-stats">
+            <div class="shard-stat">
+              <span class="shard-stat-label">Servers</span>
+              <span class="shard-stat-value">${v.guilds ?? "—"}</span>
+          </div>
+
+          <div class="shard-stat">
+            <span class="shard-stat-label">Members</span>
+            <span class="shard-stat-value">${v.members ?? "—"}</span>
+          </div>
+
+          <div class="shard-stat">
+            <span class="shard-stat-label">Channels</span>
+            <span class="shard-stat-value">${v.channels ?? "—"}</span>
+          </div>
+
+          </div>
+        </div>
+      `).join("");
+
+
+      const overall = d.health === "online" && d.database === "online" && !anyDeg
+        ? "online" : d.health === "offline" ? "offline" : "degraded";
+      document.getElementById("overallDot").className = "status-overall-dot " + dotClass(overall);
+      document.getElementById("overallLabel").textContent =
+        overall === "online" ? "All systems operational" :
+        overall === "degraded" ? "Partial outage detected" : "Major outage";
+      document.getElementById("overallSub").textContent =
+        overall === "online" ? "Everything is working as expected" :
+        "Some services may be experiencing issues";
+
+
+      document.getElementById("lastUpdated").textContent = new Date().toLocaleTimeString();
+      } catch {
+          document.getElementById("overallLabel").textContent = "Downtime detected";
+          document.getElementById("overallSub").textContent = "The bot and API are currently unreachable";
+          document.getElementById("overallDot").className = "status-overall-dot dot-offline";
+          
+          ["apiDot","dbDot","botDot","shardsDot"].forEach(id => {
+              const el = document.getElementById(id);
+              if (el) el.className = "status-dot dot-offline";
+          });
+          ["apiVal","dbVal","botVal","shardsVal"].forEach(id => {
+              const el = document.getElementById(id);
+              if (el) el.textContent = "Offline";
+          });
+      }
+  }
+
+  document.addEventListener("DOMContentLoaded", loadHealth);
+</script>

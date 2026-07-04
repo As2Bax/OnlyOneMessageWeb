@@ -1,0 +1,66 @@
+.buttons {
+    display: flex;
+    flex-wrap: wrap; /* allow buttons to stack */
+    gap: 12px;
+    justify-content: center;
+}
+
+.buttons .btn {
+    text-decoration: none;
+    padding: clamp(10px, 2vw, 14px) clamp(20px, 4vw, 32px);
+    border-radius: 10px;
+    transition: all 0.25s ease;
+    display: inline-block;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    width: clamp(20px, 25vw, 250px);
+    text-align: center;
+
+    /* animation like h1/p */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: animBtn 0.5s ease forwards; /* all buttons animate at once */
+}
+
+@keyframes animBtn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* primary button */
+.btn.primary {
+    background: white;
+    color: #5808fb;
+    font-weight: 650;
+}
+
+.btn.primary:hover {
+    background: #e9deff;
+    transform: translateY(-2px);
+}
+
+/* secondary button */
+.btn.secondary {
+    border: 2px solid white;
+    color: white;
+    font-weight: 500;
+}
+
+.btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+/* mobile optimization */
+@media (max-width: 480px) {
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .buttons .btn {
+        width: clamp(160px, 80%, 240px);
+    }
+}
