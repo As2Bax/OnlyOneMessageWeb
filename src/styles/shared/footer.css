@@ -78,22 +78,6 @@
     font-size: 0.78rem;
 }
 
-.footer-monobyte {
-    opacity: 0.45;
-    transition: opacity 0.3s ease;
-    display: block;
-}
-
-.footer-monobyte:hover {
-    opacity: 0.85;
-}
-
-.footer-monobyte img {
-    height: 18px;
-    width: auto;
-    display: block;
-}
-
 /* responsive */
 @media (max-width: 768px) {
     .footer-main {

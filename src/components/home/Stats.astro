@@ -42,7 +42,6 @@
 
     <p class="statistics-sub">Last updated: <span id="lastUpdated">-</span></p>
     <p class="statistics-sub">All stats are live and pulled directly from the OnlyOneMessage API.</p>
-  </div>
 </section>
 
 
@@ -52,7 +51,7 @@
 
     async function updateStats() {
         try {
-            const response = await fetch("https://oom-api.monobyte.studio/v1/stats");
+            const response = await fetch("https://oom-api.as2bax.dev/v1/stats");
             if (!response.ok) throw new Error("Failed to fetch stats from the OnlyOneMessage API.");
 
             const data = await response.json();
