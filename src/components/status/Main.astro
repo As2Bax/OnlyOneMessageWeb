@@ -72,7 +72,7 @@
     document.getElementById("overallDot").className = "status-overall-dot";
 
     try {
-      const res = await fetch("https://oom-api.monobyte.studio/v1/health");
+      const res = await fetch("https://oom-api.as2bax.dev/v1/health");
       if (res.status === 429) {
           document.getElementById("overallLabel").textContent = "Rate limited";
           document.getElementById("overallSub").textContent = "Too many requests - try again in a moment";

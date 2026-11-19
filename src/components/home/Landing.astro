@@ -43,7 +43,7 @@
             return num + "+";
         };
         try {
-            const res = await fetch("https://oom-api.monobyte.studio/v1/stats");
+            const res = await fetch("https://oom-api.as2bax.dev/v1/stats");
             if (!res.ok) return;
             const d = await res.json();
             document.getElementById("Servers").textContent = fmt(d.guilds);

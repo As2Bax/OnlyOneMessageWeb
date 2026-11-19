@@ -3,7 +3,7 @@
 
     <a href="/" class="logo-link">
       <img
-        src="https://cdn.monobyte.studio/onlyonemessageweb/logos/logowhite.png"
+        src="/img/logos/logowhite.png"
         alt="OnlyOneMessage Logo"
         class="logo"
       >
@@ -11,7 +11,7 @@
 
     <ul class="nav-links">
       <li><a href="/docs">Documentation</a></li>
-      <li><a href="https://github.com/MonobyteStudios/OnlyOneMessage">Source Code</a></li>
+      <li><a href="https://github.com/As2Bax/OnlyOneMessage">Source Code</a></li>
       <li><a href="/status">Status</a></li>
       <li><a href="/changelog">Changelog</a></li>
     </ul>
@@ -32,7 +32,7 @@
         const dotEl = document.querySelector(".nav-status-dot");
 
         try {
-            const res = await fetch("https://oom-api.monobyte.studio/v1/health");
+            const res = await fetch("https://oom-api.as2bax.dev/v1/health");
             if (res.ok) {
                 statusEl.style.color = "#5dca91";
                 statusEl.style.outlineColor = "rgba(93, 202, 145, 0.25)";
